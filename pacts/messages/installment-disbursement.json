@@ -1,0 +1,71 @@
+{
+  "consumer": {
+    "name": "installment"
+  },
+  "interactions": [
+    {
+      "contents": {
+        "content": {
+          "Amount": 1000.0,
+          "DisbursementId": "abc-123",
+          "LoanId": "IL1234",
+          "Status": "Success"
+        },
+        "contentType": "application/json",
+        "encoded": false
+      },
+      "description": "A disbursement status message",
+      "matchingRules": {
+        "body": {
+          "$.Amount": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          },
+          "$.DisbursementId": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "regex",
+                "regex": "^[a-z]{3}-\\d{3}$"
+              }
+            ]
+          },
+          "$.LoanId": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          },
+          "$.Status": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          }
+        }
+      },
+      "pending": false,
+      "type": "Asynchronous/Messages"
+    }
+  ],
+  "metadata": {
+    "pactRust": {
+      "ffi": "0.4.27",
+      "models": "1.2.8"
+    },
+    "pactSpecification": {
+      "version": "4.0"
+    }
+  },
+  "provider": {
+    "name": "disbursement"
+  }
+}
