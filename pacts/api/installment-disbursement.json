@@ -4,14 +4,21 @@
   },
   "interactions": [
     {
-      "description": "A valid disbursement request",
+      "description": "A valid initiate disbursement request",
+      "pending": false,
       "request": {
         "body": {
-          "Amount": 1000.0,
-          "LoanId": "12345"
+          "content": {
+            "Amount": 1000.0,
+            "LoanId": "12345"
+          },
+          "contentType": "application/json",
+          "encoded": false
         },
         "headers": {
-          "Content-Type": "application/json"
+          "Content-Type": [
+            "application/json"
+          ]
         },
         "matchingRules": {
           "body": {
@@ -38,11 +45,17 @@
       },
       "response": {
         "body": {
-          "DisbursementId": "abc-123",
-          "Message": "Success"
+          "content": {
+            "DisbursementId": "abc-123",
+            "Message": "Success"
+          },
+          "contentType": "application/json",
+          "encoded": false
         },
         "headers": {
-          "Content-Type": "application/json"
+          "Content-Type": [
+            "application/json"
+          ]
         },
         "matchingRules": {
           "body": {
@@ -65,7 +78,8 @@
           }
         },
         "status": 200
-      }
+      },
+      "type": "Synchronous/HTTP"
     }
   ],
   "metadata": {
@@ -74,7 +88,7 @@
       "models": "1.2.8"
     },
     "pactSpecification": {
-      "version": "3.0.0"
+      "version": "4.0"
     }
   },
   "provider": {
